@@ -52,13 +52,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { defineComponent, ref } from '@vue/composition-api';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'App',
+  setup() {
+    /** Items for displaying a page menu */
+    const items = ref([{ title: 'Directive for Click Outside', path: '/click-outside-test' }]);
 
-  data: () => ({
-    items: [{ title: 'Directive for Click Outside', path: '/click-outside-test' }],
-  }),
+    return { items };
+  },
 });
 </script>

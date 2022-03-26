@@ -1,10 +1,22 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-app-bar-nav-icon v-bind="attrs" v-on="on"></v-app-bar-nav-icon>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, index) in items"
+            :key="index"
+            @click="$router.push(item.path)"
+            link
+          >
+            {{ item.title }}
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -27,18 +39,14 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
+      <v-btn href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" text>
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-main>
-      <router-view/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
@@ -50,7 +58,7 @@ export default Vue.extend({
   name: 'App',
 
   data: () => ({
-    //
+    items: [{ title: 'Directive for Click Outside', path: '/click-outside-test' }],
   }),
 });
 </script>
